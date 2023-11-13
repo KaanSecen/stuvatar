@@ -25,8 +25,8 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
-            ->domain('admin.stuvatar.nl')
+            ->path(env('FILAMENT_PATH'))
+            ->domain(env('FILAMENT_DOMAIN'))
             ->login()
             ->colors([
                 'primary' => Color::Amber,

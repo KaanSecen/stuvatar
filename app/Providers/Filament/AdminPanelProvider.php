@@ -26,6 +26,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->domain('admin.stuvatar.nl')
             ->login()
             ->colors([
                 'primary' => Color::Amber,

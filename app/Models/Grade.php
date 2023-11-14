@@ -15,4 +15,9 @@ class Grade extends Model
         'color',
         'grade_number'
     ];
+
+    public function grades()
+    {
+        return $this->hasMany(Student::class, 'grade_id');
+    }
 }

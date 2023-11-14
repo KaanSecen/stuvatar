@@ -11,5 +11,4 @@ jobs:
         steps:
             - run: |
                 cd /scripts
-                chmod +x afterpull.sh
                 ./afterpull.sh

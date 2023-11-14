@@ -1,6 +1,9 @@
 name: Deploy
 
 on:
+    push:
+        branches:
+            - main
     workflow_dispatch:
 
 jobs:
@@ -11,5 +14,4 @@ jobs:
         steps:
             - run: |
                 cd /scripts
-                chmod +x afterpull.sh
-                ./afterpull.sh
+                yes | sudo ./afterpull.sh

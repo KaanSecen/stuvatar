@@ -11,4 +11,4 @@ jobs:
         steps:
             - run: |
                 cd /scripts
-                ./afterpull.sh
+                yes | sudo ./afterpull.sh

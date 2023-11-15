@@ -76,6 +76,10 @@ return [
         'default' => [
             'query' => [
                 // ExampleQuery::class,
+                'students' => \App\GraphQL\Queries\Student\StudentsQuery::class,
+                'student' => \App\GraphQL\Queries\Student\StudentQuery::class,
+
+
                 'grades' => \App\GraphQL\Queries\Grade\GradesQuery::class,
                 'grade' => \App\GraphQL\Queries\Grade\GradeQuery::class,
 
@@ -113,6 +117,7 @@ return [
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
         'Grade' => \App\GraphQL\Types\GradeType::class,
+        'Student' => \App\GraphQL\Types\StudentType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

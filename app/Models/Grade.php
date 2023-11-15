@@ -16,7 +16,13 @@ class Grade extends Model
         'grade_number'
     ];
 
-    public function grades()
+    public function grade()
+    {
+        return $this->hasMany(Student::class, 'grade_id');
+    }
+
+    //TODO Check if this is needed later on (since its unused
+    public function students()
     {
         return $this->hasMany(Student::class, 'grade_id');
     }

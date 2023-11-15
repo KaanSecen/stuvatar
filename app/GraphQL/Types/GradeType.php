@@ -4,9 +4,9 @@
 
 namespace App\GraphQL\Types;
 
+use App\GraphQL\Queries\Student\StudentsQuery;
 use App\Models\Grade;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Facades\Storage;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -44,7 +44,17 @@ class GradeType extends GraphQLType
             'grades' => [
                 'type' => GraphQL::paginate('Grade'),
                 'description' => 'List of grades'
-            ]
+            ],
+            'students' => [
+                'type' => GraphQL::paginate('Student'),
+                'description' => 'List of students in this grade',
+                'args' => (new StudentsQuery())->args(),
+                'resolve' => function ($root, $args) {
+                    $args['grade_id'] = $root->id;
+                    $studentsQuery = new StudentsQuery();
+                    return $studentsQuery->resolve(null, $args);
+                },
+            ],
         ];
     }
 }

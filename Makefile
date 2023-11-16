@@ -50,7 +50,7 @@ migrate:
 migrate-fresh:
 	$(SAIL_DIR) php artisan migrate:fresh
 seed:
-	$(SAIL_DIR) php artisan db:seed
+	$(SAIL_DIR) php artisan db:seed --force
 cache-clear:
 	$(SAIL_DIR) php artisan cache:clear
 view-clear:

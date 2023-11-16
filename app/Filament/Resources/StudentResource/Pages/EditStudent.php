@@ -37,6 +37,9 @@ class EditStudent extends EditRecord
                 TextInput::make('card')
                     ->disabled(),
                 TextInput::make('points')
+                    ->numeric()
+                    ->minValue(0)
+                    ->default(150)
             ]);
     }
 }

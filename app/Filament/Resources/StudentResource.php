@@ -44,6 +44,8 @@ class StudentResource extends Resource
                     ->default($randomCardValue)
                     ->readonly(),
                 Forms\Components\TextInput::make('points')
+                    ->numeric()
+                    ->minValue(0)
                     ->default(150)
             ]);
     }

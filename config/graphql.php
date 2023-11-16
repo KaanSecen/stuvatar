@@ -86,10 +86,14 @@ return [
             ],
             'mutation' => [
                 // ExampleMutation::class,
+                'addPoints' => \App\GraphQL\Mutations\Student\StudentAddPoints::class,
+                'removePoints' => \App\GraphQL\Mutations\Student\StudentRemovePoints::class,
             ],
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
+                'Grade' => \App\GraphQL\Types\GradeType::class,
+                'Student' => \App\GraphQL\Types\StudentType::class,
             ],
 
             // Laravel HTTP middleware
@@ -116,8 +120,6 @@ return [
         // ExampleType::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
-        'Grade' => \App\GraphQL\Types\GradeType::class,
-        'Student' => \App\GraphQL\Types\StudentType::class,
     ],
 
     // This callable will be passed the Error object for each errors GraphQL catch.

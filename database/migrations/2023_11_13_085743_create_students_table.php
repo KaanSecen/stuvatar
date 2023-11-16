@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->foreignId('grade_id')->constrained('grades');
             $table->string('card');
-            $table->integer('points')->default(150);
+            $table->integer('points')->unsigned()->default(150);
             $table->timestamps();
         });
     }

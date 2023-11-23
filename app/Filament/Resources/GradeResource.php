@@ -33,6 +33,7 @@ class GradeResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->label('Beschrijving'),
                 Forms\Components\TextInput::make('grade_number')
+                    ->required()
                     ->numeric()
                     ->minValue(1)
                     ->maxValue(8)

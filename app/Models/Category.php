@@ -15,4 +15,9 @@ class Category extends Model
         'slug'
     ];
 
+    public function item()
+    {
+        return $this->hasMany(Item::class, 'category_id');
+    }
+
 }

@@ -13,7 +13,7 @@ return [
 
         // Any middleware for the graphql route group
         // This middleware will apply to all schemas
-        'middleware' => [],
+        'middleware' => ['api.key'],
 
         // Additional route group attributes
         //

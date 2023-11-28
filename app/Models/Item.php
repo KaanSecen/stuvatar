@@ -13,6 +13,7 @@ class Item extends Model
         'title',
         'description',
         'image',
+        'background_color',
         'category_id'
     ];
 

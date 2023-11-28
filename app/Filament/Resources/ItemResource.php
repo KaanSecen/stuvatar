@@ -40,6 +40,8 @@ class ItemResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('description')
                     ->label('Beschrijving'),
+                Forms\Components\ColorPicker::make('background_color')
+                    ->label('Achtergrondkleur'),
                 Forms\Components\Select::make('category_id')
                     ->required()
                     ->relationship('category', 'name'),
@@ -52,6 +54,10 @@ class ItemResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\ColorColumn::make('background_color')
+                    ->copyable()
+                    ->copyMessage('Kleur gekopieerd')
+                    ->label('Kleur'),
                 Tables\Columns\ImageColumn::make('image')
                     ->square()
             ])

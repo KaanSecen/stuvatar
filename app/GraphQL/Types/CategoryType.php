@@ -3,8 +3,9 @@
 
 namespace App\GraphQL\Types;
 
+use App\GraphQL\Queries\Item\ItemsQuery;
 use App\GraphQL\Queries\Student\StudentsQuery;
-use App\Models\Grade;
+use App\Models\Category;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
@@ -13,8 +14,8 @@ class CategoryType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'Category',
-        'description' => 'Collection of Category',
-        'model' => Grade::class
+        'description' => 'Collection of Categories',
+        'model' => Category::class
     ];
 
     public function fields(): array
@@ -22,36 +23,32 @@ class CategoryType extends GraphQLType
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'ID of grade'
+                'description' => 'ID of category'
             ],
-            'title' => [
+            'name' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Title of the grade'
+                'description' => 'Name of the category'
+            ],
+            'slug' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'Slug of the category'
             ],
             'description' => [
                 'type' => Type::string(),
                 'description' => 'Description of the room'
             ],
-            'color' => [
-                'type' => Type::string(),
-                'description' => 'Description of the room'
+            'categories' => [
+                'type' => GraphQL::paginate('Category'),
+                'description' => 'List of categories'
             ],
-            'grade_number' => [
-                'type' => Type::nonNull(Type::int()),
-                'description' => 'Grade number of grade'
-            ],
-            'grades' => [
-                'type' => GraphQL::paginate('Grade'),
-                'description' => 'List of grades'
-            ],
-            'students' => [
-                'type' => GraphQL::paginate('Student'),
-                'description' => 'List of students in this grade',
-                'args' => (new StudentsQuery())->args(),
+            'items' => [
+                'type' => GraphQL::paginate('Item'),
+                'description' => 'List of items in one category',
+                'args' => (new ItemsQuery())->args(),
                 'resolve' => function ($root, $args) {
-                    $args['grade_id'] = $root->id;
-                    $studentsQuery = new StudentsQuery();
-                    return $studentsQuery->resolve(null, $args);
+                    $args['category_id'] = $root->id;
+                    $ItemsQuery = new ItemsQuery();
+                    return $ItemsQuery->resolve(null, $args);
                 },
             ],
         ];

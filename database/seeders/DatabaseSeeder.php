@@ -12,10 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Seed 10 grades
+        // Seed 20 grades
         \App\Models\Grade::factory(20)->create();
 
-        // Seed 250 students using the factory
-        \App\Models\Student::factory(500)->create();
+        // Seed 20 Categories
+        \App\Models\Category::factory(20)->create();
+
+        // Seed 20 Items
+        \App\Models\Item::factory(20)->create();
+
+        // Seed 750 students using the factory
+        \App\Models\Student::factory(750)->create();
     }
 }

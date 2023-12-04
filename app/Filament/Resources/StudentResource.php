@@ -24,6 +24,8 @@ class StudentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
+    public static ?string $navigationGroup = 'School';
+
     public static function form(Form $form): Form
     {
         $randomCardValue = Str::random(9);
@@ -77,7 +79,10 @@ class StudentResource extends Resource
                     ->options(Grade::all()->pluck('title', 'id'))
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->requiresConfirmation()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

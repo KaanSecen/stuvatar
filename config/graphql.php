@@ -13,7 +13,7 @@ return [
 
         // Any middleware for the graphql route group
         // This middleware will apply to all schemas
-        'middleware' => [],
+        'middleware' => ['api.key'],
 
         // Additional route group attributes
         //
@@ -79,10 +79,14 @@ return [
                 'students' => \App\GraphQL\Queries\Student\StudentsQuery::class,
                 'student' => \App\GraphQL\Queries\Student\StudentQuery::class,
 
-
                 'grades' => \App\GraphQL\Queries\Grade\GradesQuery::class,
                 'grade' => \App\GraphQL\Queries\Grade\GradeQuery::class,
 
+                'category' => \App\GraphQL\Queries\Category\CategoryQuery::class,
+                'categories' => \App\GraphQL\Queries\Category\CategoriesQuery::class,
+
+                'item' => \App\GraphQL\Queries\Item\ItemQuery::class,
+                'items' => \App\GraphQL\Queries\Item\ItemsQuery::class,
             ],
             'mutation' => [
                 // ExampleMutation::class,
@@ -93,7 +97,10 @@ return [
             'types' => [
                 // ExampleType::class,
                 'Grade' => \App\GraphQL\Types\GradeType::class,
+                'Category' => \App\GraphQL\Types\CategoryType::class,
+                'Item' => \App\GraphQL\Types\ItemType::class,
                 'Student' => \App\GraphQL\Types\StudentType::class,
+
             ],
 
             // Laravel HTTP middleware

@@ -31,11 +31,11 @@ class GradeType extends GraphQLType
             ],
             'description' => [
                 'type' => Type::string(),
-                'description' => 'Description of the room'
+                'description' => 'Description of the grade'
             ],
             'color' => [
                 'type' => Type::string(),
-                'description' => 'Description of the room'
+                'description' => 'Color code of the grade'
             ],
             'grade_number' => [
                 'type' => Type::nonNull(Type::int()),
@@ -47,7 +47,7 @@ class GradeType extends GraphQLType
             ],
             'students' => [
                 'type' => GraphQL::paginate('Student'),
-                'description' => 'List of students in this grade',
+                'description' => 'List of students one grade',
                 'args' => (new StudentsQuery())->args(),
                 'resolve' => function ($root, $args) {
                     $args['grade_id'] = $root->id;

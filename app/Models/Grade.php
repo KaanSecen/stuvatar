@@ -21,7 +21,7 @@ class Grade extends Model
         return $this->hasMany(Student::class, 'grade_id');
     }
 
-    //TODO Check if this is needed later on (since its unused
+    // Used for getting all students data from 1 class
     public function students()
     {
         return $this->hasMany(Student::class, 'grade_id');

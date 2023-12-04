@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GradeResource\Pages;
-use App\Filament\Resources\GradeResource\RelationManagers;
-use App\Models\Grade;
+use App\Filament\Resources\ItemResource\Pages;
+use App\Filament\Resources\ItemResource\RelationManagers;
+use App\Models\Item;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,12 +13,14 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class GradeResource extends Resource
+class ItemResource extends Resource
 {
-    protected static ?string $model = Grade::class;
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    public static ?string $navigationLabel = 'Klassen';
-    public static ?string $navigationGroup = 'School';
+    protected static ?string $model = Item::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
+
+    public static ?string $navigationGroup = 'Stuvatar';
+
 
     public static function form(Form $form): Form
     {
@@ -28,16 +30,21 @@ class GradeResource extends Resource
                     ->required()
                     ->label('Titel')
                     ->maxLength(255),
-                Forms\Components\ColorPicker::make('color')
-                    ->label('Kleur'),
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->imageEditor()
+                    ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp'])
+                    ->rules( 'file', 'mimetypes:image/png,image/jpeg,image/webp')
+                    ->maxSize(1024)
+                    ->directory('items')
+                    ->required(),
                 Forms\Components\Textarea::make('description')
                     ->label('Beschrijving'),
-                Forms\Components\TextInput::make('grade_number')
+                Forms\Components\ColorPicker::make('background_color')
+                    ->label('Achtergrondkleur'),
+                Forms\Components\Select::make('category_id')
                     ->required()
-                    ->numeric()
-                    ->minValue(1)
-                    ->maxValue(8)
-                    ->label('Groep'),
+                    ->relationship('category', 'name'),
             ]);
     }
 
@@ -46,24 +53,19 @@ class GradeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('title')
-                    ->label('Titel'),
-                Tables\Columns\ColorColumn::make('color')
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\ColorColumn::make('background_color')
                     ->copyable()
                     ->copyMessage('Kleur gekopieerd')
-                    ->label('Kleur')
-                    ->copyMessageDuration(1500),
-                Tables\Columns\TextColumn::make('grade_number')
-                    ->label('Groep'),
+                    ->label('Kleur'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->square()
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    ->requiresConfirmation()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -82,9 +84,9 @@ class GradeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGrades::route('/'),
-            'create' => Pages\CreateGrade::route('/create'),
-            'edit' => Pages\EditGrade::route('/{record}/edit'),
+            'index' => Pages\ListItems::route('/'),
+            'create' => Pages\CreateItem::route('/create'),
+            'edit' => Pages\EditItem::route('/{record}/edit'),
         ];
     }
 }

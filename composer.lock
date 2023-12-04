@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51595a6c24bf858e6ef8066db3d8d73b",
+    "content-hash": "3e839cb9d3636719f21b38afdcda963e",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -8420,6 +8420,59 @@
                 }
             ],
             "time": "2023-10-11T15:45:01+00:00"
+        },
+        {
+            "name": "ottaviano/faker-gravatar",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ottaviano/faker-gravatar.git",
+                "reference": "8ead3fc2abcd8b8c0e18cc61816da81c3754de72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ottaviano/faker-gravatar/zipball/8ead3fc2abcd8b8c0e18cc61816da81c3754de72",
+                "reference": "8ead3fc2abcd8b8c0e18cc61816da81c3754de72",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "fakerphp/faker": "^1.20",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ottaviano\\Faker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dimitri Gritsajuk",
+                    "email": "gritsajuk.dimitri@gmail.com"
+                }
+            ],
+            "description": "Faker Gravatar image provider",
+            "keywords": [
+                "avatar",
+                "data",
+                "faker",
+                "fixtures",
+                "gravatar",
+                "image"
+            ],
+            "support": {
+                "issues": "https://github.com/ottaviano/faker-gravatar/issues",
+                "source": "https://github.com/ottaviano/faker-gravatar/tree/0.2.0"
+            },
+            "time": "2022-07-21T13:37:09+00:00"
         },
         {
             "name": "phar-io/manifest",

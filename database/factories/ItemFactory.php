@@ -16,7 +16,10 @@ class ItemFactory extends Factory
      */
     public function definition(): array
     {
-        $image = 'items/' . $this->faker->image(storage_path('app/public/items'), 512, 512, 'animals',false, true, 'cats');
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new \Ottaviano\Faker\Gravatar($faker));
+
+        $image = 'items/' . $faker->gravatar(storage_path('app/public/items'), 'robohash', null, 512, false);
         return [
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,

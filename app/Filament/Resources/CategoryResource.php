@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Filament\Resources\CategoryResource\RelationManagers\ItemsRelationManager;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -62,6 +63,8 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Naam'),
+                Tables\Columns\TextColumn::make('description')
+                    ->label('Beschrijving')
             ])
             ->filters([
                 //
@@ -83,7 +86,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ItemsRelationManager::class
         ];
     }
 

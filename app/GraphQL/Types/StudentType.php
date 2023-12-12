@@ -25,6 +25,10 @@ class StudentType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'ID of student'
             ],
+            'full_name' => [
+                'type' => Type::nonNull(Type::string()),
+                'description' => 'Full name of the student'
+            ],
             'first_name' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'First name of the student'

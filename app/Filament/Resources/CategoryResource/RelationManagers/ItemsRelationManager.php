@@ -40,7 +40,7 @@ class ItemsRelationManager extends RelationManager
                     ->required()
                     ->relationship('category', 'name')
                     ->default(function (RelationManager $livewire) {
-                        return $livewire->ownerRecord->id;
+                        return $livewire->getOwnerRecord()->getAttribute('id');
                     }),
             ]);
     }
@@ -65,7 +65,7 @@ class ItemsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

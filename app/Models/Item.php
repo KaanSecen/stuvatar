@@ -14,11 +14,18 @@ class Item extends Model
         'description',
         'image',
         'background_color',
+        'is_available_for_sale',
+        'price',
         'category_id'
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function student()
+    {
+        return $this->belongsToMany(Student::class);
     }
 }

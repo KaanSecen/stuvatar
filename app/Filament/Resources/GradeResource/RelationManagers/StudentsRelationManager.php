@@ -18,7 +18,6 @@ class StudentsRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
-//        dd($form);
         $randomCardValue = Str::random(9);
         return $form
             ->schema([
@@ -31,7 +30,9 @@ class StudentsRelationManager extends RelationManager
                 Forms\Components\Select::make('grade_id')
                     ->required()
                     ->relationship('grade', 'title')
-                    ->default('5'),
+                    ->default(function (RelationManager $livewire) {
+                        return $livewire->getOwnerRecord()->getAttribute('id');
+                    }),
                 Forms\Components\TextInput::make('card')
                     ->required()
                     ->default($randomCardValue)

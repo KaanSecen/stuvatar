@@ -41,6 +41,14 @@ class ItemType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'background color of the item'
             ],
+            'is_available_for_sale' => [
+                'type' => Type::nonNull(Type::boolean()),
+                'description' => 'item availability for sale'
+            ],
+            'price' => [
+                'type' => Type::nonNull(Type::int()),
+                'description' => 'price of ite,'
+            ],
             'image_url' => [
                 'type' => Type::nonNull(Type::string()),
                 'description' => 'URL of the item',

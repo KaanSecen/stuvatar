@@ -25,7 +25,7 @@ class StudentFactory extends Factory
         return [
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
-            'grade_id' => $this->faker->numberBetween(1, 20),
+            'grade_id' => $this->faker->numberBetween(1, 10),
             'card' => $this->faker->regexify('[A-Za-z0-9]{9}'),
             'points' => $this->faker->numberBetween(100, 500),
             'created_at' => now(),

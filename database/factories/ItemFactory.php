@@ -23,8 +23,10 @@ class ItemFactory extends Factory
         return [
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'category_id' => $this->faker->numberBetween(1, 20),
+            'category_id' => $this->faker->numberBetween(1, 10),
             'background_color' => $this->faker->hexColor,
+            'is_available_for_sale' => $this->faker->boolean,
+            'price' => $this->faker->numberBetween(100, 500),
             'image' => $image,
             'created_at' => now(),
             'updated_at' => now(),

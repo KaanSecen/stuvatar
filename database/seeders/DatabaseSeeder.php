@@ -13,15 +13,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Seed 20 grades
-        \App\Models\Grade::factory(20)->create();
+        \App\Models\Grade::factory(10)->create();
 
         // Seed 20 Categories
-        \App\Models\Category::factory(20)->create();
+        \App\Models\Category::factory(10)->create();
 
         // Seed 20 Items
-        \App\Models\Item::factory(20)->create();
+        \App\Models\Item::factory(100)->create();
 
         // Seed 750 students using the factory
-        \App\Models\Student::factory(750)->create();
+        \App\Models\Student::factory(200)->create();
+
+        \App\Models\ItemStudent::factory(50)->create();
     }
 }

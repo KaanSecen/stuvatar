@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GradeResource\Pages;
 use App\Filament\Resources\GradeResource\RelationManagers;
+use App\Filament\Resources\GradeResource\RelationManagers\StudentsRelationManager;
 use App\Models\Grade;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -75,7 +76,7 @@ class GradeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentsRelationManager::class
         ];
     }
 

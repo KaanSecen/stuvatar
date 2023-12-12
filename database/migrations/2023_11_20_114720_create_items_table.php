@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->foreignId('category_id')->constrained('categories');
             $table->string('background_color')->nullable();
+            $table->boolean('is_available_for_sale')->default(false);
+            $table->integer('price')->default(0);
             $table->string('image');
             $table->timestamps();
         });

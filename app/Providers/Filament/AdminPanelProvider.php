@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
@@ -30,6 +31,11 @@ class AdminPanelProvider extends PanelProvider
             ->domain(env('FILAMENT_DOMAIN'))
             ->login()
             ->sidebarCollapsibleOnDesktop()
+            ->navigationGroups([
+                'Stuvatar',
+                'School',
+                'External'
+            ])
             ->navigationItems([
                 NavigationItem::make('Homepage')
                     ->url('https://stuvatar.nl', shouldOpenInNewTab: true)

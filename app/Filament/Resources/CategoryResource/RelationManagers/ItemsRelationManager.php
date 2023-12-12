@@ -1,31 +1,22 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\CategoryResource\RelationManagers;
 
-use App\Filament\Resources\ItemResource\Pages;
-use App\Filament\Resources\ItemResource\RelationManagers;
-use App\Models\Item;
+use App\Models\Category;
+use App\Models\Grade;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Get;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ItemResource extends Resource
+class ItemsRelationManager extends RelationManager
 {
-    protected static ?string $model = Item::class;
+    protected static string $relationship = 'items';
 
-    protected static ?string $navigationIcon = 'heroicon-o-cube';
-
-    public static ?string $navigationGroup = 'Stuvatar';
-
-    protected static ?string $navigationLabel = 'Items';
-
-
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -45,25 +36,19 @@ class ItemResource extends Resource
                     ->label('Beschrijving'),
                 Forms\Components\ColorPicker::make('background_color')
                     ->label('Achtergrondkleur'),
-                Forms\Components\Toggle::make('is_available_for_sale')
-                    ->label('Beschikbaar voor verkoop')
-                    ->live()
-                    ->offIcon('heroicon-o-x-mark')
-                    ->onIcon('heroicon-o-check'),
-                Forms\Components\TextInput::make('price')
-                    ->numeric()
-                    ->hidden(fn (Get $get): bool => ! $get('is_available_for_sale'))
-                    ->minValue(0)
-                    ->default(0),
                 Forms\Components\Select::make('category_id')
                     ->required()
-                    ->relationship('category', 'name'),
+                    ->relationship('category', 'name')
+                    ->default(function (RelationManager $livewire) {
+                        return $livewire->getOwnerRecord()->getAttribute('id');
+                    }),
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('title'),
@@ -72,34 +57,24 @@ class ItemResource extends Resource
                     ->copyMessage('Kleur gekopieerd')
                     ->label('Kleur'),
                 Tables\Columns\ImageColumn::make('image')
-                    ->square()
+                    ->square(),
+                Tables\Columns\SelectColumn::make('category_id')
+                    ->options(Category::all()->pluck('name', 'id'))
             ])
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make()
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListItems::route('/'),
-            'create' => Pages\CreateItem::route('/create'),
-            'edit' => Pages\EditItem::route('/{record}/edit'),
-        ];
     }
 }

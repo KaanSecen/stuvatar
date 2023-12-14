@@ -79,6 +79,9 @@ return [
                 'students' => \App\GraphQL\Queries\Student\StudentsQuery::class,
                 'student' => \App\GraphQL\Queries\Student\StudentQuery::class,
 
+                'item_inventory' => \App\GraphQL\Queries\ItemStudent\ItemStudentQuery::class,
+                'item_inventories' => \App\GraphQL\Queries\ItemStudent\ItemStudentsQuery::class,
+
                 'grades' => \App\GraphQL\Queries\Grade\GradesQuery::class,
                 'grade' => \App\GraphQL\Queries\Grade\GradeQuery::class,
 
@@ -92,6 +95,7 @@ return [
                 // ExampleMutation::class,
                 'addPoints' => \App\GraphQL\Mutations\Student\StudentAddPoints::class,
                 'removePoints' => \App\GraphQL\Mutations\Student\StudentRemovePoints::class,
+                'updateItemStudent' => \App\GraphQL\Mutations\ItemStudent\ItemStudentUpdateActive::class,
             ],
             // The types only available in this schema
             'types' => [
@@ -100,6 +104,7 @@ return [
                 'Category' => \App\GraphQL\Types\CategoryType::class,
                 'Item' => \App\GraphQL\Types\ItemType::class,
                 'Student' => \App\GraphQL\Types\StudentType::class,
+                'ItemStudent' => \App\GraphQL\Types\ItemStudentType::class,
 
             ],
 

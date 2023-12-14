@@ -42,15 +42,6 @@ class ItemStudentResource extends Resource
                     ->required()
                     ->searchable()
                     ->suffixIcon('heroicon-o-cube')
-//                    ->rules([
-//                        // Student_id cannot have multiple of the same item_id
-//                        fn (Get $get): Closure => function (string $attribute, $value, Closure $fail) use ($get) {
-//                            $item = ItemStudent::where('student_id', $get('student_id'))->where('item_id', $get('item_id'))->exists();
-//                            if ($item) {
-//                                $fail('This item is already in the inventory.');
-//                            }
-//                        },
-//                    ])
                     ->relationship('item', 'title'),
                     ])->columnSpan(['lg' => 2]),
                 Forms\Components\Section::make('Status')

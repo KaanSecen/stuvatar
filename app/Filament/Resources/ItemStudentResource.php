@@ -3,11 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ItemStudentResource\Pages;
+use App\Models\Category;
+use App\Models\Item;
 use App\Models\ItemStudent;
 use Filament\Forms;
+use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Closure;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -44,6 +48,30 @@ class ItemStudentResource extends Resource
                     ->schema([
                         Forms\Components\Toggle::make('is_active')
                             ->label('Actief')
+                            ->live()
+                            ->reactive()
+                            ->afterStateUpdated(function($state,Set $set,Get $get)
+                            {
+                                if($state)
+                                {
+                                    // If the item_id is active, set all other item_id's of that category to inactive
+                                    $item = Item::where('id', $get('item_id'))->first();
+                                    $items = Item::where('category_id', $item->id)->get();
+
+                                    foreach($items as $item)
+                                    {
+                                        $itemStudent = ItemStudent::where('item_id', $item->id)->where('student_id', $get('student_id'))->get();
+                                        if($itemStudent)
+                                        {
+                                            $itemStudent->update([
+                                                'is_active' => false
+                                            ]);
+                                        }
+                                    }
+
+
+                                }
+                            })
                             ->offIcon('heroicon-o-x-mark')
                             ->onIcon('heroicon-o-check')
                     ])->columnSpan(['lg' => 1])
@@ -54,6 +82,7 @@ class ItemStudentResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('student.id'),
                 Tables\Columns\TextColumn::make('student.full_name')
                     ->searchable()
@@ -61,10 +90,11 @@ class ItemStudentResource extends Resource
                 Tables\Columns\TextColumn::make('item.title')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('item.category.name')
+                Tables\Columns\TextColumn::make('item.category.id')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\ToggleColumn::make('is_active')
+                Tables\Columns\IconColumn::make('is_active')
+                    ->boolean()
             ])
             ->filters([
                 //

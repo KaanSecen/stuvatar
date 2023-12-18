@@ -58,8 +58,8 @@ class StudentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('first_name'),
-                Tables\Columns\TextColumn::make('last_name'),
+                Tables\Columns\TextColumn::make('full_name')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('card')
                     ->color('info')
                     ->icon('heroicon-o-identification')

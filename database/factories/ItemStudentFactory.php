@@ -22,7 +22,7 @@ class ItemStudentFactory extends Factory
     {
         return [
             'student_id' => $this->faker->numberBetween(1, 100),
-            'item_id' => $this->faker->numberBetween(1, 50),
+            'item_id' => $this->faker->numberBetween(1, 100),
             'is_active' => $this->faker->boolean,
         ];
     }

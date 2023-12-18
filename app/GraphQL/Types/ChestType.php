@@ -3,19 +3,18 @@
 
 namespace App\GraphQL\Types;
 
-use App\GraphQL\Queries\Student\StudentsQuery;
-use App\Models\Item;
+use App\Models\Chest;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Facades\Storage;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class ItemType extends GraphQLType
+class ChestType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Item',
-        'description' => 'Collection of Items',
-        'model' => Item::class
+        'name' => 'Chest',
+        'description' => 'Collection of Chests',
+        'model' => Chest::class
     ];
 
     public function fields(): array
@@ -23,42 +22,34 @@ class ItemType extends GraphQLType
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'ID of item'
+                'description' => 'ID of chest'
             ],
             'title' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Title of the item'
+                'description' => 'Title of the chest'
             ],
             'description' => [
                 'type' => Type::string(),
-                'description' => 'Description of the item'
-            ],
-            'category_id' => [
-                'type' => Type::nonNull(Type::int()),
-                'description' => 'Category ID of the item'
-            ],
-            'background_color' => [
-                'type' => Type::string(),
-                'description' => 'background color of the item'
+                'description' => 'Description of the chest'
             ],
             'is_available_for_sale' => [
                 'type' => Type::nonNull(Type::boolean()),
-                'description' => 'item availability for sale'
+                'description' => 'chest availability for sale'
             ],
             'price' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'price of ite,'
+                'description' => 'price of the chest'
             ],
             'image_url' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'URL of the item',
+                'description' => 'URL of the image',
                 'resolve' => function ($root) {
                     return config('app.url') . Storage::url($root->path . $root->filename) . $root->image;
                 },
             ],
-            'items' => [
-                'type' => GraphQL::paginate('Item'),
-                'description' => 'List of items'
+            'chests' => [
+                'type' => GraphQL::paginate('Chest'),
+                'description' => 'List of chests'
             ],
         ];
     }

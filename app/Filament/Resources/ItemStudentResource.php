@@ -6,6 +6,7 @@ use App\Filament\Resources\ItemStudentResource\Pages;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\ItemStudent;
+use App\Models\Student;
 use Filament\Forms;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Form;
@@ -52,24 +53,14 @@ class ItemStudentResource extends Resource
                             ->reactive()
                             ->afterStateUpdated(function($state,Set $set,Get $get)
                             {
-                                if($state)
-                                {
-                                    // If the item_id is active, set all other item_id's of that category to inactive
-                                    $item = Item::where('id', $get('item_id'))->first();
-                                    $items = Item::where('category_id', $item->id)->get();
+                                if ($state && $get('student_id') && $get('item_id')) {
+                                    $student = Student::findOrFail($get('student_id'));
 
-                                    foreach($items as $item)
-                                    {
-                                        $itemStudent = ItemStudent::where('item_id', $item->id)->where('student_id', $get('student_id'))->get();
-                                        if($itemStudent)
-                                        {
-                                            $itemStudent->update([
-                                                'is_active' => false
-                                            ]);
-                                        }
-                                    }
+                                    $category_id = Item::where('id', $get('item_id'))->value('category_id');
 
-
+                                    ItemStudent::where('student_id', $student->id)
+                                        ->whereIn('item_id', Item::where('category_id', $category_id)->pluck('id'))
+                                        ->update(['is_active' => 0]);
                                 }
                             })
                             ->offIcon('heroicon-o-x-mark')
@@ -90,7 +81,7 @@ class ItemStudentResource extends Resource
                 Tables\Columns\TextColumn::make('item.title')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('item.category.id')
+                Tables\Columns\TextColumn::make('item.category.name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_active')

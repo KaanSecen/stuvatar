@@ -41,21 +41,14 @@ class ItemStudentUpdateActive extends Query
         else {
             $itemStudent->is_active = 1;
 
-
             $student = Student::findOrFail($itemStudent->student_id);
-            $category_id = Item::where('id', $itemStudent->item_id)->first()->category_id;
 
-            $items = Item::where('category_id', $category_id)->get();
-            $studentItems = ItemStudent::where('student_id', $student->id)->get();
+            $category_id = Item::where('id', $itemStudent->item_id)->value('category_id');
 
-            foreach ($items as $item) {
-                foreach ($studentItems as $studentItem) {
-                    if ($item->id == $studentItem->item_id) {
-                        $studentItem->is_active = 0;
-                        $studentItem->save();
-                    }
-                }
-            }
+            ItemStudent::where('student_id', $student->id)
+                ->whereIn('item_id', Item::where('category_id', $category_id)->pluck('id'))
+                ->update(['is_active' => 0]);
+
         }
         $itemStudent->save();
 

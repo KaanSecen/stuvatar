@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         // Seed 750 students using the factory
         \App\Models\Student::factory(200)->create();
 
-        \App\Models\ItemStudent::factory(50)->create();
+        \App\Models\ItemStudent::factory(25)->create();
     }
 }

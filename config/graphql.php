@@ -82,6 +82,12 @@ return [
                 'item_inventory' => \App\GraphQL\Queries\ItemStudent\ItemStudentQuery::class,
                 'item_inventories' => \App\GraphQL\Queries\ItemStudent\ItemStudentsQuery::class,
 
+                'item_chest' => \App\GraphQL\Queries\ItemChest\ItemChestQuery::class,
+                'item_chests' => \App\GraphQL\Queries\ItemChest\ItemChestsQuery::class,
+
+                'chest_inventory' => \App\GraphQL\Queries\ChestStudent\ChestStudentQuery::class,
+                'chest_inventories' => \App\GraphQL\Queries\ChestStudent\ChestStudentsQuery::class,
+
                 'grades' => \App\GraphQL\Queries\Grade\GradesQuery::class,
                 'grade' => \App\GraphQL\Queries\Grade\GradeQuery::class,
 
@@ -100,6 +106,7 @@ return [
                 'removePoints' => \App\GraphQL\Mutations\Student\StudentRemovePoints::class,
                 'updateItemStudent' => \App\GraphQL\Mutations\ItemStudent\ItemStudentUpdateActive::class,
                 'buyItem' => \App\GraphQL\Mutations\Item\ItemBuy::class,
+                'buyChest' => \App\GraphQL\Mutations\Chest\ChestBuy::class,
             ],
             // The types only available in this schema
             'types' => [
@@ -110,6 +117,8 @@ return [
                 'Student' => \App\GraphQL\Types\StudentType::class,
                 'Chest' => \App\GraphQL\Types\ChestType::class,
                 'ItemStudent' => \App\GraphQL\Types\ItemStudentType::class,
+                'ItemChest' => \App\GraphQL\Types\ItemChestType::class,
+                'ChestStudent' => \App\GraphQL\Types\ChestStudentType::class,
 
             ],
 

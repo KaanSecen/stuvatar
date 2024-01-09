@@ -2,28 +2,24 @@
 
 namespace Database\Factories;
 
-use App\Models\ItemStudent;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ItemStudent>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ItemChest>
  */
-class ItemStudentFactory extends Factory
+class ItemChestFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-
-    protected $model = ItemStudent::class;
-
     public function definition(): array
     {
         return [
-            'student_id' => $this->faker->numberBetween(1, 50),
+            'chest_id' => $this->faker->numberBetween(1, 5),
             'item_id' => $this->faker->numberBetween(1, 200),
-            'is_active' => $this->faker->boolean,
+            'rarity' => $this->faker->randomElement(['common', 'uncommon', 'rare', 'legendary']),
         ];
     }
 }

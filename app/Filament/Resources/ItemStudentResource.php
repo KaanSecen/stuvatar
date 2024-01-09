@@ -22,7 +22,6 @@ class ItemStudentResource extends Resource
     protected static ?string $model = ItemStudent::class;
 
     protected static ?string $slug = 'items/inventory';
-    protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
     protected static ?string $modelLabel = 'Inventory';
     protected static ?string $navigationParentItem = 'Items';
     public static ?string $navigationGroup = 'Stuvatar';

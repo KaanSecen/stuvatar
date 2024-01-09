@@ -81,6 +81,8 @@ return [
 
                 'item_inventory' => \App\GraphQL\Queries\ItemStudent\ItemStudentQuery::class,
                 'item_inventories' => \App\GraphQL\Queries\ItemStudent\ItemStudentsQuery::class,
+                'active_item_inventory' => \App\GraphQL\Queries\Item\ActiveItemStudentQuery::class,
+
 
                 'item_chest' => \App\GraphQL\Queries\ItemChest\ItemChestQuery::class,
                 'item_chests' => \App\GraphQL\Queries\ItemChest\ItemChestsQuery::class,

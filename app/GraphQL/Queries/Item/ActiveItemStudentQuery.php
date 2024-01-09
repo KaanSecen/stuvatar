@@ -12,7 +12,7 @@ use Rebing\GraphQL\Support\Query;
 class ActiveItemStudentQuery extends Query
 {
     protected $attributes = [
-        'name' => 'item_inventory',
+        'name' => 'active_item_student',
     ];
 
     public function type(): Type

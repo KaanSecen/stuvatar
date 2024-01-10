@@ -19,7 +19,7 @@ class ChestFactory extends Factory
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \Ottaviano\Faker\Gravatar($faker));
 
-        $image = 'chests/' . $faker->gravatar(storage_path('app/public/chests'), 'robohash', null, 512, false);
+        $image = 'chests/' . $faker->gravatar(storage_path('app/public/chests'), 'retro', null, 512, false);
         return [
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,

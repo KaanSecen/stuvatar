@@ -12,10 +12,10 @@ use GraphQL\Error\UserError;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 
-class ChestBuy extends Query
+class ChestGive extends Query
 {
     protected $attributes = [
-        'name' => 'buyChest',
+        'name' => 'giveChest',
     ];
 
     public function type(): Type
@@ -44,22 +44,11 @@ class ChestBuy extends Query
         $student = Student::findOrFail($args['student_id']);
         $chest = Chest::findOrFail($args['chest_id']);
 
-        if(!$chest->is_available_for_sale) {
-            throw new UserError('Cannot buy Chest. Chest not available for sale.');
-        }
-
-        if ($student->points >= $chest->price) {
-            $student->points -= $chest->price;
-            $student->save();
-
-            $chestStudent = new ChestStudent();
-            $chestStudent->student_id = $student->id;
-            $chestStudent->chest_id = $chest->id;
-            $chestStudent->used = 0;
-            $chestStudent->save();
-        } else {
-            throw new UserError('Cannot buy Chest. Insufficient balance.');
-        }
+        $chestStudent = new ChestStudent();
+        $chestStudent->student_id = $student->id;
+        $chestStudent->chest_id = $chest->id;
+        $chestStudent->used = 0;
+        $chestStudent->save();
 
         return $chestStudent;
     }

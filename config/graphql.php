@@ -109,6 +109,8 @@ return [
                 'updateItemStudent' => \App\GraphQL\Mutations\ItemStudent\ItemStudentUpdateActive::class,
                 'buyItem' => \App\GraphQL\Mutations\Item\ItemBuy::class,
                 'buyChest' => \App\GraphQL\Mutations\Chest\ChestBuy::class,
+                'openChest' => \App\GraphQL\Mutations\Item\ChestOpen::class,
+                'giveChest' => \App\GraphQL\Mutations\Chest\ChestGive::class,
             ],
             // The types only available in this schema
             'types' => [

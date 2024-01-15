@@ -78,6 +78,7 @@ return [
                 // ExampleQuery::class,
                 'students' => \App\GraphQL\Queries\Student\StudentsQuery::class,
                 'student' => \App\GraphQL\Queries\Student\StudentQuery::class,
+                'student_card' => \App\GraphQL\Queries\Student\StudentCardQuery::class,
 
                 'item_inventory' => \App\GraphQL\Queries\ItemStudent\ItemStudentQuery::class,
                 'item_inventories' => \App\GraphQL\Queries\ItemStudent\ItemStudentsQuery::class,

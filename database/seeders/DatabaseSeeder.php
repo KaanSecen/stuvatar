@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Chest::factory(5)->create();
 
-        \App\Models\ItemChest::factory(50)->create();
+        \App\Models\ItemChest::factory(200)->create();
 
     }
 }

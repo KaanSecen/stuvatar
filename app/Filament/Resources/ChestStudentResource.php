@@ -22,7 +22,12 @@ class ChestStudentResource extends Resource
 {
     protected static ?string $model = ChestStudent::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $slug = 'chests/students';
+    protected static ?string $modelLabel = 'Chest Students';
+    protected static ?string $navigationParentItem = 'Chests';
+    public static ?string $navigationGroup = 'Stuvatar';
+
+
 
     public static function form(Form $form): Form
     {

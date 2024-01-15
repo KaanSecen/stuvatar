@@ -43,7 +43,7 @@ class CategoryResource extends Resource
                         ->label('Naam')
                         ->maxLength(255),
                     Forms\Components\Textarea::make('description')
-                        ->minLength(1000)
+                        ->minLength(50)
                         ->label('Beschrijving'),
                     ])->columnSpan(['lg' => 2]),
                 Forms\Components\Section::make('Slug')

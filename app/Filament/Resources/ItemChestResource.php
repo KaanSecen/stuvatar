@@ -65,13 +65,15 @@ class ItemChestResource extends Resource
                 Tables\Columns\TextColumn::make('item.category.name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\SelectColumn::make('rarity')
-                    ->options([
-                        'common' => 'Common',
-                        'uncommon' => 'Uncommon',
-                        'rare' => 'Rare',
-                        'legendary' => 'Legendary'
-                    ])
+                Tables\Columns\IconColumn::make('rarity')
+                    ->icon('heroicon-o-square-3-stack-3d')
+                    ->color(fn (string $state): string => match ($state) {
+                        'common' => 'info',
+                        'uncommon' => 'success',
+                        'rare' => 'danger',
+                        'legendary' => 'warning',
+                        default => 'gray',
+                    }),
             ])
             ->filters([
                 //

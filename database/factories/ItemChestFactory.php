@@ -16,10 +16,22 @@ class ItemChestFactory extends Factory
      */
     public function definition(): array
     {
+        $roll = number_format(mt_rand(0, 10000) / 100, 2);
+
+        if ($roll <= 2.50 || $roll >= 97.50) {
+            $rarity = 'legendary';
+        } elseif ($roll <= 7.50 || $roll >= 92.50) {
+            $rarity = 'rare';
+        } elseif ($roll <= 15.00 || $roll >= 85.00) {
+            $rarity = 'uncommon';
+        } else {
+            $rarity = 'common';
+        }
+
         return [
             'chest_id' => $this->faker->numberBetween(1, 5),
             'item_id' => $this->faker->numberBetween(1, 200),
-            'rarity' => $this->faker->randomElement(['common', 'uncommon', 'rare', 'legendary']),
+            'rarity' => $rarity,
         ];
     }
 }

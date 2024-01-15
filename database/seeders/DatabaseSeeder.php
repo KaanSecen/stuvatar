@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Grade::factory(10)->create();
 
         // Seed 20 Categories
-        \App\Models\Category::factory(10)->create();
+        \App\Models\Category::factory(2)->create();
 
         // Seed 200 Items
         \App\Models\Item::factory(200)->create();

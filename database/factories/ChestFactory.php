@@ -24,7 +24,7 @@ class ChestFactory extends Factory
             'title' => $this->faker->word,
             'description' => $this->faker->sentence,
             'is_available_for_sale' => $this->faker->boolean,
-            'price' => $this->faker->numberBetween(100, 500),
+            'price' => $this->faker->numberBetween(150, 1000),
             'image' => $image,
             'created_at' => now(),
             'updated_at' => now(),

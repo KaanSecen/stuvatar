@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e839cb9d3636719f21b38afdcda963e",
+    "content-hash": "2905b9efc5c1a6237e03b85506fb8192",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -3376,6 +3376,91 @@
                 }
             ],
             "time": "2023-12-11T18:04:00+00:00"
+        },
+        {
+            "name": "martian/laravatar",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amplifiedhq/laravatar.git",
+                "reference": "8903f551c0b8eabbd77728ddadf47d5cefe6d615"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amplifiedhq/laravatar/zipball/8903f551c0b8eabbd77728ddadf47d5cefe6d615",
+                "reference": "8903f551c0b8eabbd77728ddadf47d5cefe6d615",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.18",
+                "pestphp/pest": "^1.23",
+                "pestphp/pest-plugin-laravel": "^1.4",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AmplifiedHQ\\Laravatar\\Providers\\LaravatarServiceProvider"
+                    ],
+                    "aliases": {
+                        "Laravatar": "AmplifiedHQ\\Laravatar\\Facades\\Laravatar"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Helpers/Helper.php"
+                ],
+                "psr-4": {
+                    "AmplifiedHQ\\Laravatar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josiah Endurance",
+                    "email": "hendurhance.dev@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anofi AbdulHameed",
+                    "role": "Developer"
+                },
+                {
+                    "name": "AmplifiedHQ",
+                    "homepage": "https://github.com/amplifiedhq/laravatar",
+                    "role": "Organization"
+                }
+            ],
+            "description": "🚀 A lightweight and easy-to-use Laravel package that add avatars to your models",
+            "homepage": "https://github.com/amplifiedhq/laravatar",
+            "keywords": [
+                "DiceBear",
+                "amplifiedhq",
+                "avatar",
+                "avatars",
+                "boring-avatars",
+                "gravatar",
+                "laravel",
+                "laravel-10",
+                "laravel-8",
+                "laravel-package",
+                "php",
+                "ui-avatars"
+            ],
+            "support": {
+                "issues": "https://github.com/amplifiedhq/laravatar/issues",
+                "source": "https://github.com/amplifiedhq/laravatar/tree/v1.0.1"
+            },
+            "time": "2023-12-29T20:02:07+00:00"
         },
         {
             "name": "masterminds/html5",

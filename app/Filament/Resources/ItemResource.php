@@ -72,7 +72,7 @@ class ItemResource extends Resource
                     ->copyMessage('Kleur gekopieerd')
                     ->label('Kleur'),
                 Tables\Columns\ImageColumn::make('image')
-                    ->square(),
+                    ->circular(),
                 Tables\Columns\IconColumn::make('is_available_for_sale')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('price')

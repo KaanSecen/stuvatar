@@ -7,6 +7,7 @@ namespace App\GraphQL\Types;
 use App\GraphQL\Queries\ChestStudent\ChestStudentsQuery;
 use App\Models\ChestStudent;
 use GraphQL\Type\Definition\Type;
+use Illuminate\Support\Facades\Storage;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -36,6 +37,13 @@ class ChestStudentType extends GraphQLType
             'used' => [
                 'type' => Type::nonNull(Type::boolean()),
                 'description' => 'status of Chest'
+            ],
+            'chest_image' => [
+                'type' => Type::string(),
+                'description' => 'Image of the Chest',
+                'resolve' => function($chestStudent) {
+                    return config('app.url') . Storage::url($chestStudent->chest->image);
+                },
             ],
         ];
     }

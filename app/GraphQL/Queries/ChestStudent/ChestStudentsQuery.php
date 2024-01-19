@@ -41,7 +41,7 @@ class ChestStudentsQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = ChestStudent::query();
+        $query = ChestStudent::with('chest');
 
         if (isset($args['student_id'])) {
             $query->where('student_id', $args['student_id']);

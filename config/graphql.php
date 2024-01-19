@@ -90,6 +90,7 @@ return [
 
                 'chest_inventory' => \App\GraphQL\Queries\ChestStudent\ChestStudentQuery::class,
                 'chest_inventories' => \App\GraphQL\Queries\ChestStudent\ChestStudentsQuery::class,
+                'get_rarity_chest' => \App\GraphQL\Queries\ItemChest\ChestItemRarityQuery::class,
 
                 'grades' => \App\GraphQL\Queries\Grade\GradesQuery::class,
                 'grade' => \App\GraphQL\Queries\Grade\GradeQuery::class,
